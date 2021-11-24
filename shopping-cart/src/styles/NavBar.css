@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 8px;
+}
+
+.shopping-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
