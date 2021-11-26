@@ -1,10 +1,10 @@
 import React from "react";
 import Cards from "../Cards";
 
-function Menu() {
+function Menu(props) {
   return (
     <>
-      <Cards />
+      <Cards cupcakes={props.cupcakes} />
     </>
   );
 }
