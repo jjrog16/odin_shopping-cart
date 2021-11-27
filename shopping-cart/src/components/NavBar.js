@@ -52,7 +52,9 @@ function NavBar(props) {
             </li>
           </ul>
           <div className="shopping-cart">
-            <ShoppingCartIcon />
+            <Link to="/cart" className="shopping-cart">
+              <ShoppingCartIcon />
+            </Link>
             <p>{cartCount().cupcakeCount}</p>
           </div>
         </div>

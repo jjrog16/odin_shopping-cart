@@ -1,0 +1,51 @@
+* {
+  /* border: 1px red double; */
+}
+.order-top {
+  display: flex;
+  padding: 8px;
+}
+
+.orders-item {
+  margin: 8px;
+}
+
+.orders-item-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.orders-item-title {
+  display: flex;
+  align-items: center;
+}
+
+.orders-item-price {
+  display: flex;
+  align-items: center;
+  margin: 32px;
+}
+
+.orders-item-img {
+  width: 50px;
+  height: 50px;
+}
+
+.total-price {
+  font-size: 50px;
+}
+
+.order-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.remove {
+  margin-left: 32px;
+}
+
+.orders-amount {
+  margin-right: 32px;
+}

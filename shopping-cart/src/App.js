@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/pages/Home";
 import Menu from "./components/pages/Menu";
+import ShoppingCart from "./components/pages/ShoppingCart";
 import CUPCAKEIMAGE from "../src/images/cupcake_favicon.png";
 import uniqid from "uniqid";
 import "./styles/App.css";
@@ -15,7 +16,7 @@ function App() {
       imgAlt: "vanilla cupcake",
       title: "Vanilla Cupcake",
       desc: "A delicious classic made to perfection",
-      price: Number(5.0).toFixed(2),
+      price: Number(3.0).toFixed(2),
       cupcakeCount: 0,
     },
     {
@@ -66,9 +67,11 @@ function App() {
 
   const [shoppingCart, setShoppingCart] = useState([]);
 
+  // Appends the cupcake object to the shopping cart array after "Add to order" is clicked
   function addToCart(order) {
     setShoppingCart(() => {
-      return [...shoppingCart, order];
+      // Add an additional property of totalPrice to help have a running total
+      return [...shoppingCart, { ...order, totalPrice: 0 }];
     });
   }
 
@@ -88,6 +91,10 @@ function App() {
                 addToCart={addToCart}
               />
             }
+          />
+          <Route
+            path="/cart"
+            element={<ShoppingCart checkoutCart={shoppingCart} />}
           />
         </Routes>
       </BrowserRouter>
