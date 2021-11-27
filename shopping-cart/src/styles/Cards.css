@@ -1,0 +1,18 @@
+* {
+  /* border: 1px red double; */
+}
+.menu-title {
+  text-align: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cards-wrapper {
+  display: flex;
+}

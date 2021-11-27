@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "../styles/CardItem.css";
 
 function CardItem(props) {
   const { cupcakes } = props;
+
+  function addToCart() {
+    console.log(cupcakes);
+  }
 
   return (
     <>
@@ -17,6 +21,30 @@ function CardItem(props) {
         <div className="cards-item-info">
           <h2 className="cards-item-title">{cupcakes.title}</h2>
           <h5 className="cards-item-text">{cupcakes.desc}</h5>
+        </div>
+        <div className="add-to-cart-container">
+          <div className="add-to-cart-count-wrapper">
+            <div className="minus">
+              <button
+                className="btn-minus"
+                onClick={() => props.decreaseOrderCount(cupcakes.id)}
+              >
+                -
+              </button>
+            </div>
+            <div className="counter">{cupcakes.cupcakeCount}</div>
+            <div className="plus">
+              <button
+                className="btn-plus"
+                onClick={() => props.increaseOrderCount(cupcakes.id)}
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <button className="add-to-cart" onClick={addToCart}>
+            Add to Cart
+          </button>
         </div>
       </li>
     </>

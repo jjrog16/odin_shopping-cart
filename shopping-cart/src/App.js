@@ -15,6 +15,7 @@ function App() {
       imgAlt: "vanilla cupcake",
       title: "Vanilla Cupcake",
       desc: "A delicious classic made to perfection",
+      cupcakeCount: 0,
     },
     {
       id: uniqid(),
@@ -22,15 +23,43 @@ function App() {
       imgAlt: "chocolate cupcake",
       title: "Chocolate Cupcake",
       desc: "For those that need a bit of chocolate love in their life",
+      cupcakeCount: 0,
     },
     {
       id: uniqid(),
       image: CUPCAKEIMAGE,
       imgAlt: "carrot cake cupcake",
       title: "Carrot Cake Cupcake",
-      desc: "A cupcake Bugs Bunny would marry",
+      desc: "It counts as a vegetable, we promise",
+      cupcakeCount: 0,
     },
   ]);
+
+  function increment(id) {
+    setCupcakes(() => {
+      return cupcakes.map((item) => {
+        if (item.id === id) {
+          return { ...item, cupcakeCount: item.cupcakeCount + 1 };
+        }
+        return item;
+      });
+    });
+  }
+
+  function decrement(id) {
+    setCupcakes(() => {
+      return cupcakes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            // You can't go negative, so we check that the value is higher than 0
+            cupcakeCount: item.cupcakeCount > 0 ? item.cupcakeCount - 1 : 0,
+          };
+        }
+        return item;
+      });
+    });
+  }
 
   return (
     <>
@@ -38,7 +67,16 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu cupcakes={cupcakes} />} />
+          <Route
+            path="/menu"
+            element={
+              <Menu
+                cupcakes={cupcakes}
+                increaseOrderCount={increment}
+                decreaseOrderCount={decrement}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
