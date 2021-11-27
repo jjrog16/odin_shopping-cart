@@ -4,10 +4,6 @@ import "../styles/CardItem.css";
 function CardItem(props) {
   const { cupcakes } = props;
 
-  function addToCart() {
-    console.log(cupcakes);
-  }
-
   return (
     <>
       <li key={cupcakes.id} className="cards-item">
@@ -21,6 +17,7 @@ function CardItem(props) {
         <div className="cards-item-info">
           <h2 className="cards-item-title">{cupcakes.title}</h2>
           <h5 className="cards-item-text">{cupcakes.desc}</h5>
+          <h5 className="cards-item-price">{`$${cupcakes.price}`}</h5>
         </div>
         <div className="add-to-cart-container">
           <div className="add-to-cart-count-wrapper">
@@ -42,7 +39,10 @@ function CardItem(props) {
               </button>
             </div>
           </div>
-          <button className="add-to-cart" onClick={addToCart}>
+          <button
+            className="add-to-cart"
+            onClick={() => props.addToCart(cupcakes)}
+          >
             Add to Cart
           </button>
         </div>

@@ -16,6 +16,7 @@ function Cards(props) {
                   cupcakes={cupcake}
                   increaseOrderCount={props.increaseOrderCount}
                   decreaseOrderCount={props.decreaseOrderCount}
+                  addToCart={props.addToCart}
                 />
               );
             })}

@@ -8,6 +8,7 @@ function Menu(props) {
         cupcakes={props.cupcakes}
         increaseOrderCount={props.increaseOrderCount}
         decreaseOrderCount={props.decreaseOrderCount}
+        addToCart={props.addToCart}
       />
     </>
   );

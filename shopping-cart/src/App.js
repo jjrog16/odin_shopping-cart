@@ -15,6 +15,7 @@ function App() {
       imgAlt: "vanilla cupcake",
       title: "Vanilla Cupcake",
       desc: "A delicious classic made to perfection",
+      price: Number(5.0).toFixed(2),
       cupcakeCount: 0,
     },
     {
@@ -23,6 +24,7 @@ function App() {
       imgAlt: "chocolate cupcake",
       title: "Chocolate Cupcake",
       desc: "For those that need a bit of chocolate love in their life",
+      price: Number(5.0).toFixed(2),
       cupcakeCount: 0,
     },
     {
@@ -31,11 +33,12 @@ function App() {
       imgAlt: "carrot cake cupcake",
       title: "Carrot Cake Cupcake",
       desc: "It counts as a vegetable, we promise",
+      price: Number(6.9).toFixed(2),
       cupcakeCount: 0,
     },
   ]);
 
-  function increment(id) {
+  function incrementCupcakeCount(id) {
     setCupcakes(() => {
       return cupcakes.map((item) => {
         if (item.id === id) {
@@ -46,7 +49,7 @@ function App() {
     });
   }
 
-  function decrement(id) {
+  function decrementCupcakeCount(id) {
     setCupcakes(() => {
       return cupcakes.map((item) => {
         if (item.id === id) {
@@ -61,10 +64,18 @@ function App() {
     });
   }
 
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  function addToCart(order) {
+    setShoppingCart(() => {
+      return [...shoppingCart, order];
+    });
+  }
+
   return (
     <>
       <BrowserRouter>
-        <NavBar />
+        <NavBar cart={shoppingCart} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -72,8 +83,9 @@ function App() {
             element={
               <Menu
                 cupcakes={cupcakes}
-                increaseOrderCount={increment}
-                decreaseOrderCount={decrement}
+                increaseOrderCount={incrementCupcakeCount}
+                decreaseOrderCount={decrementCupcakeCount}
+                addToCart={addToCart}
               />
             }
           />

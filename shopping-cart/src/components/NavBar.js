@@ -3,8 +3,29 @@ import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-function NavBar() {
-  const [cartCount, setCartCount] = useState(0);
+function NavBar(props) {
+  const cartCount = () => {
+    switch (props.cart.length) {
+      case 0:
+        // Return an object with cupcakeCount otherwise reduce will
+        // return a number, which does not have the cupcakeCount property
+        return { cupcakeCount: 0 };
+
+      case 1:
+        // Returns the object so that cupcakeCount can be called
+        return props.cart[0];
+
+      default:
+        return props.cart.reduce((previousValue, currentValue) => {
+          // Return an object with cupcakeCount otherwise reduce will
+          // return a number, which does not have the cupcakeCount property
+          return {
+            cupcakeCount:
+              previousValue.cupcakeCount + currentValue.cupcakeCount,
+          };
+        });
+    }
+  };
 
   return (
     <>
@@ -32,7 +53,7 @@ function NavBar() {
           </ul>
           <div className="shopping-cart">
             <ShoppingCartIcon />
-            <p>{cartCount}</p>
+            <p>{cartCount().cupcakeCount}</p>
           </div>
         </div>
       </nav>
