@@ -3,7 +3,6 @@ import "../styles/OrderItem.css";
 
 function OrderItem(props) {
   const { orders } = props;
-  console.log(orders);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import OrderItem from "../OrderItem";
 import "../../styles/ShoppingCart.css";
 
@@ -12,12 +12,14 @@ function ShoppingCart(props) {
       case 0:
         // Return an object with cupcakeCount otherwise reduce will
         // return a number, which does not have the cupcakeCount property
-        return { totalPrice: 0 };
+        return {
+          totalPrice: function () {
+            return 0;
+          },
+        };
 
       case 1:
         // Returns the object so that totalPrice can be called
-        checkoutCart[0].totalPrice =
-          checkoutCart[0].cupcakeCount * checkoutCart[0].price;
         return checkoutCart[0];
 
       default:
@@ -26,17 +28,13 @@ function ShoppingCart(props) {
           // return a number, which does not have the cupcakeCount property
           console.log(`Prev Total Price: ${previousValue.totalPrice}`);
           console.log(`Current Total Price: ${currentValue.totalPrice}`);
-          console.log(
-            `Previous: ${previousValue.cupcakeCount}(count) and ${previousValue.price}(price)`
-          );
-          console.log(
-            `Current: ${currentValue.cupcakeCount}(count) and ${currentValue.price}(price)`
-          );
+          console.log(`Previous: ${JSON.stringify(previousValue)}`);
+          console.log(`Current: ${JSON.stringify(currentValue)}`);
 
           return {
-            totalPrice:
-              previousValue.cupcakeCount * previousValue.price +
-              currentValue.cupcakeCount * currentValue.price,
+            totalPrice: function () {
+              return previousValue.totalPrice() + currentValue.totalPrice();
+            },
           };
         });
     }
@@ -56,7 +54,9 @@ function ShoppingCart(props) {
         <div className="order-total">
           <div className="order-total-top">
             <h2 className="final-price">Order Total:</h2>
-            <p className="total-price">{`$${calcTotalPrice().totalPrice}`}</p>
+            <p className="total-price">{`$${Number(
+              calcTotalPrice().totalPrice()
+            ).toFixed(2)}`}</p>
           </div>
           <div className="order-total-bottom">
             <button className="checkout">Checkout</button>

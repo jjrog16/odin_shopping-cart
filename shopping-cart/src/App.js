@@ -18,6 +18,9 @@ function App() {
       desc: "A delicious classic made to perfection",
       price: Number(3.0).toFixed(2),
       cupcakeCount: 0,
+      totalPrice: function () {
+        return this.price * this.cupcakeCount;
+      },
     },
     {
       id: uniqid(),
@@ -27,6 +30,9 @@ function App() {
       desc: "For those that need a bit of chocolate love in their life",
       price: Number(5.0).toFixed(2),
       cupcakeCount: 0,
+      totalPrice: function () {
+        return this.price * this.cupcakeCount;
+      },
     },
     {
       id: uniqid(),
@@ -36,6 +42,9 @@ function App() {
       desc: "It counts as a vegetable, we promise",
       price: Number(6.9).toFixed(2),
       cupcakeCount: 0,
+      totalPrice: function () {
+        return this.price * this.cupcakeCount;
+      },
     },
   ]);
 
@@ -71,7 +80,7 @@ function App() {
   function addToCart(order) {
     setShoppingCart(() => {
       // Add an additional property of totalPrice to help have a running total
-      return [...shoppingCart, { ...order, totalPrice: 0 }];
+      return [...shoppingCart, order];
     });
   }
 
